@@ -2,12 +2,11 @@ import bricks
 
 
 class Processor:
-    flows = []
-    tanks = {}
-    running = False
-
-    def __init__(self, speed=1):
+    def __init__(self, speed=1, tanks={}, flows=[]):
         self.speed = speed
+        self.running = False
+        self.flows = flows
+        self.tanks = tanks
 
     def add_tank(self, name, initial_cap=0):
         tank = bricks.Tank(name, initial_cap)
