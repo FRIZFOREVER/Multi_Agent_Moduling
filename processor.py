@@ -15,10 +15,24 @@ class Processor:
         tank = bricks.Tank(name, x, y, initial_cap)
         self.tanks[name] = tank
 
+    def add_tank_list(self, tank_list, debug=False):
+        self.run_check()
+        for name, x, y in tank_list:
+            self.add_tank(name, x, y)
+        if debug:
+            [print(item) for item in self.tanks]
+
     def add_flow(self, target, receiver, pace=1):
         self.run_check()
         flow = bricks.Flow(pace, self.tanks[target], self.tanks[receiver])
         self.flows.append(flow)
+
+    def add_flow_list(self, flow_list, debug=False):
+        self.run_check()
+        for target, receiver, pace in flow_list:
+            self.add_flow(target, receiver, pace)
+        if debug:
+            [print(item) for item in self.flows]
 
     def create_graph_module(self):
         self.graphics = graphics.Graphics(self)
