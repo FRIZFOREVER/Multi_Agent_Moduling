@@ -1,4 +1,6 @@
 import bricks
+import time
+import graphics
 
 
 class Processor:
@@ -8,23 +10,39 @@ class Processor:
         self.flows = flows
         self.tanks = tanks
 
-    def add_tank(self, name, initial_cap=0):
+    def add_tank(self, name, x=0, y=0, initial_cap=0):
         self.run_check()
-        tank = bricks.Tank(name, initial_cap)
+        tank = bricks.Tank(name, x, y, initial_cap)
         self.tanks[name] = tank
 
     def add_flow(self, target, receiver, pace=1):
         self.run_check()
-        flow = bricks.Flow(pace, target, receiver)
+        flow = bricks.Flow(pace, self.tanks[target], self.tanks[receiver])
         self.flows.append(flow)
 
-    def start(self):
-        self.running = True
-        pass
+    def create_graph_module(self):
+        self.graphics = graphics.Graphics(self)
 
-    def update_system(self):
+    def system_run(self, debug=False):
+        self.graphics.run()
+        while (True):
+            self.update_system(debug)
+            time.sleep(5)
+
+    def start(self, debug=False):
+        self.create_graph_module()
+        self.running = True
+        self.system_run(debug)
+
+    def update_system(self, debug=False):
         for _ in range(self.speed):
-            (flow.update() for flow in self.flows)
+            for flow in self.flows:
+                flow.update()
+                if debug:
+                    print(flow)
+                    print()
+        if debug:
+            [print(self.tanks[item]) for item in self.tanks]
 
     def run_check(self):
         if self.running:
