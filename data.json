@@ -1,1 +1,21 @@
-{"tanks": [["Sorter_Al", 310, 160], ["Sorter_Cu", 10, 160], ["Disassembler_Al", 460, 160], ["Disassembler_Cu", 160, 160], ["Output", 460, 460]], "flows": [["Input", "Sorter_Al", 2], ["Input", "Sorter_Cu", 2], ["Sorter_Al", "Disassembler_Al", 1.5], ["Sorter_Cu", "Disassembler_Cu", 1.5], ["Disassembler_Al", "Sorter_Cu", 0.2], ["Disassembler_Cu", "Sorter_Al", 0.2], ["Disassembler_Al", "Output", 0.8], ["Disassembler_Cu", "Output", 0.8]]}
+{
+  "tanks":
+  [
+    ["Sorter_Al", 310, 160],
+    ["Sorter_Cu", 10, 160],
+    ["Disassembler_Al", 460, 160],
+    ["Disassembler_Cu", 160, 160],
+    ["Output", 460, 460]
+  ],
+  "flows":
+  [
+    ["Input", "Sorter_Al", 2, "s", "n"],
+    ["Input", "Sorter_Cu", 2, "e", "n"],
+    ["Sorter_Al", "Disassembler_Al", 1.5, "e", "w"],
+    ["Sorter_Cu", "Disassembler_Cu", 1.5, "e", "w"],
+    ["Disassembler_Al", "Sorter_Cu", 0.2, "e", "w"],
+    ["Disassembler_Cu", "Sorter_Al", 0.2, "ws", "ne"],
+    ["Disassembler_Al", "Output", 0.8, "s", "n"],
+    ["Disassembler_Cu", "Output", 0.8, "s", "n"]
+  ]
+}

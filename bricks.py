@@ -28,10 +28,12 @@ class Tank:
 
 
 class Flow:
-    def __init__(self, pace, target, receiver):
+    def __init__(self, pace, target, receiver, anch_srt='e', anch_end='w'):
         self.pace = pace
         self.target = target
         self.receiver = receiver
+        self.anch_srt = anch_srt
+        self.anch_end = anch_end
 
     def update(self):
         drew = self.target.draw_amount(self.pace)
@@ -40,3 +42,23 @@ class Flow:
     def __str__(self):
         return (f' from {self.target} going to'
                 + f'{self.receiver} with {self.pace} ')
+
+    def get_start(self):
+        x, y = self.target.get_coords()
+        return {
+            self.anch_srt == 'e': [x+100, y+50],
+            self.anch_srt == 's': [x+50, y+100],
+            self.anch_srt == 'w': [x, y+50],
+            self.anch_srt == 'n': [x+50, y],
+            self.anch_srt == 'ws': [x, y+100]
+        }[True]
+
+    def get_end(self):
+        x, y = self.receiver.get_coords()
+        return {
+            self.anch_end == 'e': [x+100, y+50],
+            self.anch_end == 's': [x+50, y+100],
+            self.anch_end == 'w': [x, y+50],
+            self.anch_end == 'n': [x+50, y],
+            self.anch_end == 'ne': [x+100, y]
+        }[True]

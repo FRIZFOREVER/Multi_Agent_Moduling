@@ -17,8 +17,8 @@ class Graphics:
         self.window.mainloop()
 
     def read_data(self):
-        for name in self.proc.tanks:
-            x, y = self.proc.tanks[name].get_coords()
+        for item in self.proc.tanks.values():
+            x, y = item.get_coords()
             self.canvas.create_rectangle(x, y, x+100, y+100, fill='White',
                                          outline='Black', width=2)
-            self.canvas.pack(anchor='nw')
+        self.canvas.pack(anchor='nw')
