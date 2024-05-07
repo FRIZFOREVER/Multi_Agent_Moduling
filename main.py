@@ -15,4 +15,4 @@ if __name__ == '__main__':
     flows = data['flows']
     proc.add_tank_list(tanks)
     proc.add_flow_list(flows)
-    proc.start()
+    proc.start(True)

@@ -9,12 +9,12 @@
   ],
   "flows":
   [
-    ["Input", "Sorter_Al", 2, "s", "n"],
-    ["Input", "Sorter_Cu", 2, "e", "n"],
+    ["Input", "Sorter_Al", 2, "e", "n"],
+    ["Input", "Sorter_Cu", 2, "s", "n"],
     ["Sorter_Al", "Disassembler_Al", 1.5, "e", "w"],
     ["Sorter_Cu", "Disassembler_Cu", 1.5, "e", "w"],
-    ["Disassembler_Al", "Sorter_Cu", 0.2, "e", "w"],
-    ["Disassembler_Cu", "Sorter_Al", 0.2, "ws", "ne"],
+    ["Disassembler_Al", "Sorter_Cu", 0.2, "ws", "ne"],
+    ["Disassembler_Cu", "Sorter_Al", 0.2, "e", "w"],
     ["Disassembler_Al", "Output", 0.8, "s", "n"],
     ["Disassembler_Cu", "Output", 0.8, "s", "n"]
   ]

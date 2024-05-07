@@ -12,6 +12,8 @@ class Graphics:
         self.window.geometry('1000x1000')
         self.canvas = tk.Canvas(width=1000, height=1000)
         self.read_data()
+        self.btn = tk.Button(text="start")
+        self.btn.pack()
 
     def run(self):
         self.window.mainloop()
@@ -21,4 +23,8 @@ class Graphics:
             x, y = item.get_coords()
             self.canvas.create_rectangle(x, y, x+100, y+100, fill='White',
                                          outline='Black', width=2)
-        self.canvas.pack(anchor='nw')
+        for item in self.proc.flows:
+            x0, y0 = item.get_start()
+            x1, y1 = item.get_end()
+            self.canvas.create_line(x0, y0, x1, y1, arrow=tk.LAST)
+            self.canvas.pack(anchor='nw')

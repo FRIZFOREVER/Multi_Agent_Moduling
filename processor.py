@@ -22,15 +22,16 @@ class Processor:
         if debug:
             [print(item) for item in self.tanks]
 
-    def add_flow(self, target, receiver, pace=1):
+    def add_flow(self, target, receiver, pace=1, anch_srt='e', anch_end='w'):
         self.run_check()
-        flow = bricks.Flow(pace, self.tanks[target], self.tanks[receiver])
+        flow = bricks.Flow(pace, self.tanks[target], self.tanks[receiver],
+                           anch_srt, anch_end)
         self.flows.append(flow)
 
     def add_flow_list(self, flow_list, debug=False):
         self.run_check()
-        for target, receiver, pace in flow_list:
-            self.add_flow(target, receiver, pace)
+        for target, receiver, pace, anch_srt, anch_end in flow_list:
+            self.add_flow(target, receiver, pace, anch_srt, anch_end)
         if debug:
             [print(item) for item in self.flows]
 
@@ -60,4 +61,4 @@ class Processor:
 
     def run_check(self):
         if self.running:
-            raise Exception('Model is running')
+            raise Exception('Model is running, cannot change structure')
